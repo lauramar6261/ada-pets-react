@@ -15,6 +15,7 @@ const getCards = (props) => {
         about={pet.about}
         location={pet.location}
         onSelectPetCallback={props.onSelectPetCallback}
+        onRemovePetCallback={props.onRemovePetCallback}
       />
     );
   } );

@@ -32,10 +32,20 @@ class App extends Component {
     });
   }
 
+  onRemovePet = (petId) => {
+    const pet = this.state.petList.find( (pet) => pet.id === petId);
+
+    const updatedPets = this.state.petList.filter(item => item !== pet)
+
+    this.setState({
+      petList: updatedPets
+    });
+  }
+
 
   render() {
     const { currentPet } = this.state;
-    
+
     return (
       <main className="App">
         <header className="app-header">
@@ -49,9 +59,10 @@ class App extends Component {
           { this.state.currentPet ? <PetDetails currentPet={currentPet}  /> : "" }
         <section className="pet-list-wrapper">
           { /* Wave 1:  Where PetList should appear */ }
-          <PetList 
+          <PetList
             pets={this.state.petList}
             onSelectPetCallback={this.onSelectPet}
+            onRemovePetCallback={this.onRemovePet}
           />
         </section>
         <section className="new-pet-form-wrapper">
