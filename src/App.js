@@ -20,7 +20,15 @@ class App extends Component {
     };
   }
 
+  onSelectPet = (petId) => {
+    const pet = this.state.petList.find( (pet) => {
+      return pet.id === petId
+    });
 
+    this.setState({
+      currentPet: pet,
+    });
+  }
 
   onSelectPet = (petId) => {
     console.log('Pet Selected');
@@ -34,8 +42,8 @@ class App extends Component {
 
 
   render() {
-    const { currentPet } = this.state;
-    
+    const { currentPet } = this.state; //destructuring // looks for key called currentPet and saves it in currentPet variable
+
     return (
       <main className="App">
         <header className="app-header">
@@ -46,10 +54,10 @@ class App extends Component {
           <SearchBar />
         </section>
           { /* Wave 2:  Where Pet Details should appear */ }
-          { this.state.currentPet ? <PetDetails currentPet={currentPet}  /> : "" }
+          {this.state.currentPet? <PetDetails currentPet={currentPet}/> : ""}
         <section className="pet-list-wrapper">
           { /* Wave 1:  Where PetList should appear */ }
-          <PetList 
+          <PetList
             pets={this.state.petList}
             onSelectPetCallback={this.onSelectPet}
           />
